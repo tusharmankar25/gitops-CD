@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: tusharacr.azurecr.io/nodejs-app:latest
+        image: tusharacr.azurecr.io/nodejs-app:b8e4539148a8225b715d15953908595e1507ee45
         ports:
         - containerPort: 3000
       # Add this block to authenticate using the secret you just created
