@@ -1,36 +1,22 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
-  namespace: prod
-  labels:
-    app: frontend
+  name: nodejs-app
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: frontend
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app: frontend
+        app: nodejs-app
     spec:
       containers:
-        - name: frontend
-          image: tusharmankar/frontend:latest
-          ports:
-            - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend-svc
-  namespace: prod
-spec:
-  selector:
-    app: frontend
-  ports:
-    - port: 80
-      targetPort: 80
-  type: ClusterIP
+      - name: nodejs-app
+        image: tusharacr.azurecr.io/my-node-app:latest
+        ports:
+        - containerPort: 3000
+      # Add this block to authenticate using the secret you just created
+      imagePullSecrets:
+      - name: acr-auth
