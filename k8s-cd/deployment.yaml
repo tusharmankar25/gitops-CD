@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs-app
+  namespace: node-js
 spec:
   replicas: 2
   selector:
@@ -14,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nodejs-app
-        image: tusharacr.azurecr.io/my-node-app:latest
+        image: tusharacr.azurecr.io/nodejs-app:latest
         ports:
         - containerPort: 3000
       # Add this block to authenticate using the secret you just created
